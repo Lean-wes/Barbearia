@@ -1,240 +1,858 @@
-<!DOCTYPE html><html lang="pt-br" x-data="{ mobileMenuOpen: false, darkMode: false, club: '' }" :class="{ 'dark': darkMode }">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="On Fire Barbearia em Vacaria, RS – Cortes modernos e temática de futebol para torcedores apaixonados." />
-  <meta name="keywords" content="Barbearia On Fire, Vacaria, RS, futebol gaúcho, Grêmio, Internacional, Juventude" />
-  <title>On Fire Barbearia</title>  <!-- Tailwind CSS -->  <script src="https://cdn.tailwindcss.com"></script>  <!-- Google Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <!-- FontAwesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <!-- AOS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <!-- Swiper.js -->
-  <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <!-- Alpine.js -->
-  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#E63946', /* Vermelho paixão */
-            secondary: '#1D3557', /* Azul profundo */
-            accent: '#F1FAEE'
-          },
-          fontFamily: { sans: ['Montserrat', 'sans-serif'] }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Barbearia On Fire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #FF4D00;
+            --secondary: #1A1A1A;
+            --accent: #FFD700;
+            --light: #F5F5F5;
         }
-      }
-    }
-  </script>  <style>body { scroll-behavior: smooth; }</style></head>
-<body class="bg-accent dark:bg-secondary text-secondary dark:text-accent font-sans">  <!-- Header -->  <header class="fixed w-full bg-accent dark:bg-secondary shadow z-50">
-    <div class="container mx-auto flex items-center justify-between p-4">
-      <div class="flex items-center space-x-4">
-        <a href="#home" class="text-2xl font-semibold text-primary">On Fire</a>
-        <template x-if="club"><span class="italic text-primary">Torcedor de <strong x-text="club"></strong></span></template>
-        <div class="flex items-center space-x-2">
-          <template x-if="club==='Grêmio'"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Gremio_logo.svg/80px-Gremio_logo.svg.png" alt="Grêmio" class="h-8" /></template> <!-- ([pt.m.wikipedia.org](https://pt.m.wikipedia.org/wiki/Ficheiro%3AGremio_logo.svg?utm_source=chatgpt.com)) -->
-          <template x-if="club==='Internacional'"><img src="https://cdn.api-futebol.com.br/escudos/638d349b92103.svg" alt="Internacional" class="h-8" /></template> <!-- ([fr.wikipedia.org](https://fr.wikipedia.org/wiki/Fichier%3ALogo_SC_Internacional.svg?utm_source=chatgpt.com)) -->
-          <template x-if="club==='Juventude'"><img src="https://cdn.api-futebol.com.br/escudos/638d349b308c6.svg" alt="Juventude" class="h-8" /></template> <!-- ([fr.wikipedia.org](https://fr.wikipedia.org/wiki/Fichier%3ALogo_EC_Juventude.svg?utm_source=chatgpt.com)) -->
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #0F0F0F;
+            color: var(--light);
+        }
+        
+        .heading {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        
+        .hero-pattern {
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF4D00' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .glass-card {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 77, 0, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 77, 0, 0.2);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .service-card:hover {
+            border-bottom: 3px solid var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #FF7E00);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 77, 0, 0.3);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .text-stroke {
+            -webkit-text-stroke: 1px var(--primary);
+            color: transparent;
+        }
+        
+        .fire-text {
+            background: linear-gradient(to right, #FF4D00, #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .gallery-img {
+            transition: all 0.5s ease;
+            filter: grayscale(70%);
+        }
+        
+        .gallery-img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .mobile-menu {
+            transition: transform 0.5s ease;
+        }
+        
+        .mobile-menu.hidden {
+            transform: translateX(-100%);
+        }
+        
+        .mobile-menu.block {
+            transform: translateX(0);
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF7E00;
+        }
+        
+        /* Custom cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(255, 77, 0, 0.5);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .custom-cursor {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom cursor -->
+    <div class="custom-cursor"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="#hero" class="flex items-center">
+                            <span class="text-3xl mr-2">🔥</span>
+                            <span class="heading text-3xl font-bold text-white">BARBEARIA <span class="fire-text">ON FIRE</span></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#servicios" class="nav-link text-white hover:text-orange-500 px-3 py-2 text-sm font-medium">Servicios</a>
+                        <a href="#galeria" class="nav-link text-white hover:text-orange-500 px-3 py-2 text-sm font-medium">Galería</a>
+                        <a href="#equipo" class="nav-link text-white hover:text-orange-500 px-3 py-2 text-sm font-medium">Equipo</a>
+                        <a href="#testimonios" class="nav-link text-white hover:text-orange-500 px-3 py-2 text-sm font-medium">Testimonios</a>
+                        <a href="#contacto" class="btn-primary text-white px-6 py-2 rounded-full font-medium">Reservar</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-orange-500">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-      <nav class="hidden md:flex items-center space-x-6">
-        <a href="#services" class="hover:text-primary">Serviços</a>
-        <a href="#about" class="hover:text-primary">Sobre</a>
-        <a href="#gallery" class="hover:text-primary">Galeria</a>
-        <a href="#testimonials" class="hover:text-primary">Depoimentos</a>
-        <a href="#contact" class="hover:text-primary">Contato</a>
-        <select x-model="club" class="border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary">
-          <option value="">Seu clube...</option>
-          <option value="Grêmio">Grêmio</option>
-          <option value="Internacional">Internacional</option>
-          <option value="Juventude">Juventude</option>
-        </select>
-      </nav>
-      <div class="flex items-center space-x-4 md:hidden">
-        <button @click="darkMode = !darkMode" class="focus:outline-none">
-          <i :class="darkMode ? 'fas fa-sun text-yellow-300' : 'fas fa-moon text-gray-600'"></i>
-        </button>
-        <button @click="mobileMenuOpen = !mobileMenuOpen" class="focus:outline-none">
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
-      </div>
-    </div>
-    <!-- Mobile Menu -->
-    <div x-show="mobileMenuOpen" class="md:hidden bg-accent dark:bg-secondary">
-      <nav class="flex flex-col p-4 space-y-2">
-        <a href="#services" @click="mobileMenuOpen=false" class="hover:text-primary">Serviços</a>
-        <a href="#about" @click="mobileMenuOpen=false" class="hover:text-primary">Sobre</a>
-        <a href="#gallery" @click="mobileMenuOpen=false" class="hover:text-primary">Galeria</a>
-        <a href="#testimonials" @click="mobileMenuOpen=false" class="hover:text-primary">Depoimentos</a>
-        <a href="#contact" @click="mobileMenuOpen=false" class="hover:text-primary">Contato</a>
-        <select x-model="club" class="mt-4 border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary">
-          <option value="">Seu clube...</option>
-          <option value="Grêmio">Grêmio</option>
-          <option value="Internacional">Internacional</option>
-          <option value="Juventude">Juventude</option>
-        </select>
-      </nav>
-    </div>
-  </header>  <!-- Hero -->  <section id="home" class="h-screen bg-[url('https://source.unsplash.com/1600x900/?barber,fire')] bg-center bg-cover relative">
-    <div class="absolute inset-0 bg-black/60"></div>
-    <div class="relative z-10 container mx-auto h-full flex items-center justify-center text-center px-4" data-aos="fade-up">
-      <div>
-        <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">On Fire Barbearia</h1>
-        <p class="text-xl text-gray-200 mb-6">Vacaria, RS – Cortes e experiência para torcedores gaúchos</p>
-        <a href="#services" class="inline-block bg-primary text-secondary font-semibold px-6 py-3 rounded-lg shadow hover:bg-opacity-90 transition">Ver Serviços</a>
-      </div>
-    </div>
-  </section>  <!-- Services -->  <section id="services" class="py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-semibold text-center mb-12" data-aos="fade-down">Nossos Serviços</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6 rounded-2xl shadow-lg transform hover:-translate-y-2 transition bg-accent dark:bg-secondary text-center" data-aos="zoom-in">
-          <i class="fas fa-cut text-4xl text-primary mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Corte de Cabelo</h3>
-          <p class="mb-4">Estilo que valoriza sua paixão pelo futebol.</p>
-          <span class="block font-bold text-primary">R$ 60</span>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="mobile-menu hidden md:hidden bg-black bg-opacity-95 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#servicios" class="block text-white hover:text-orange-500 px-3 py-2 text-base font-medium">Servicios</a>
+                <a href="#galeria" class="block text-white hover:text-orange-500 px-3 py-2 text-base font-medium">Galería</a>
+                <a href="#equipo" class="block text-white hover:text-orange-500 px-3 py-2 text-base font-medium">Equipo</a>
+                <a href="#testimonios" class="block text-white hover:text-orange-500 px-3 py-2 text-base font-medium">Testimonios</a>
+                <a href="#contacto" class="block btn-primary text-white px-6 py-2 rounded-full font-medium text-center mt-4 mx-3">Reservar</a>
+            </div>
         </div>
-        <div class="p-6 rounded-2xl shadow-lg transform hover:-translate-y-2 transition bg-accent dark:bg-secondary text-center" data-aos="zoom-in" data-aos-delay="100">
-          <i class="fas fa-blind text-4xl text-primary mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Afeitado Tradicional</h3>
-          <p class="mb-4">Toalha quente e lâmina para um acabamento impecável.</p>
-          <span class="block font-bold text-primary">R$ 70</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-pattern min-h-screen flex items-center justify-center relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+            <h1 class="heading text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
+                <span class="block">ESTILO QUE</span>
+                <span class="fire-text">ENCIENDE PASIONES</span>
+            </h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-300">
+                Donde cada corte es una obra maestra y cada cliente sale sintiéndose renovado.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://wa.me/" target="_blank" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-bold">
+                    RESERVA POR WHATSAPP
+                </a>
+                <a href="#servicios" class="bg-transparent border-2 border-white hover:border-orange-500 text-white px-8 py-4 rounded-full text-lg font-bold transition-all">
+                    NUESTROS SERVICIOS
+                </a>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-indicator">
+                <a href="#servicios" class="text-white">
+                    <svg class="w-10 h-10 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
-        <div class="p-6 rounded-2xl shadow-lg transform hover:-translate-y-2 transition bg-accent dark:bg-secondary text-center" data-aos="zoom-in" data-aos-delay="200">
-          <i class="fas fa-beard text-4xl text-primary mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Design de Barba</h3>
-          <p class="mb-4">Perfilado profissional com produtos premium.</p>
-          <span class="block font-bold text-primary">R$ 50</span>
+        
+        <!-- Floating elements -->
+        <div class="hidden md:block absolute top-1/4 left-10 floating" style="animation-delay: 0.5s;">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 8H17M7 12H17M7 16H13" stroke="#FF4D00" stroke-width="2" stroke-linecap="round"/>
+            </svg>
         </div>
-      </div>
-    </div>
-  </section>  <!-- About -->  <section id="about" class="bg-gray-100 dark:bg-gray-800 py-16">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
-      <div class="md:w-1/2 mb-8 md:mb-0" data-aos="fade-right">
-        <img src="https://source.unsplash.com/600x400/?barber,team" alt="Equipe On Fire" class="rounded-2xl shadow-lg">
-      </div>
-      <div class="md:w-1/2 md:pl-12" data-aos="fade-left">
-        <h2 class="text-3xl font-semibold mb-4">Sobre Nós</h2>
-        <p class="mb-4">No coração de Vacaria, unimos paixão gaúcha pelo futebol com cortes de excelência e atendimento diferenciado.</p>
-        <ul class="space-y-2">
-          <li><i class="fas fa-check-circle text-primary mr-2"></i>Atendimento por ordem de chegada</li>
-          <li><i class="fas fa-check-circle text-primary mr-2"></i>Ambiente temático de futebol</li>
-          <li><i class="fas fa-check-circle text-primary mr-2"></i>Equipe certificada e apaixonada</li>
-        </ul>
-      </div>
-    </div>
-  </section>  <!-- Hours -->  <section id="hours" class="bg-accent dark:bg-secondary py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-semibold text-center mb-6" data-aos="fade-down">Horário de Funcionamento</h2>
-      <ul class="text-center space-y-2" data-aos="fade-up">
-        <li>Segunda-feira: 09:00–11:30 e 13:30–20:00</li>
-        <li>Terça-feira: 09:00–11:30 e 13:30–20:00</li>
-        <li>Quarta-feira: 09:00–11:30 e 13:30–20:00</li>
-        <li>Quinta-feira: 09:00–11:30 e 13:30–20:00</li>
-        <li>Sexta-feira: 09:00–11:30 e 13:30–20:00</li>
-        <li>Sábado: 09:00–11:30 e 13:30–18:00</li>
-        <li>Domingo: Fechado</li>
-      </ul>
-      <p class="text-center mt-4 italic">Atendimento por ordem de chegada</p>
-    </div>
-  </section>  <!-- Gallery -->  <section id="gallery" class="py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-semibold text-center mb-12" data-aos="fade-down">Galeria</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <img src="https://source.unsplash.com/600x400/?barber,cut" alt="Corte On Fire" class="rounded-lg shadow-md hover:scale-105 transition" data-aos="flip-left">
-        <img src="https://source.unsplash.com/600x400/?barber,tools" alt="Ferramentas" class="rounded-lg shadow-md hover:scale-105 transition" data-aos="flip-left" data-aos-delay="100">
-        <img src="https://source.unsplash.com/600x400/?barbershop,interior" alt="Interior" class="rounded-lg shadow-md hover:scale-105 transition" data-aos="flip-left" data-aos-delay="200">
-      </div>
-    </div>
-  </section>  <!-- Testimonials -->  <section id="testimonials" class="bg-gray-100 dark:bg-gray-800 py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-semibold text-center mb-12" data-aos="fade-down">Depoimentos</h2>
-      <div class="swiper-container" data-aos="fade-up">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide p-6 bg-accent dark:bg-secondary rounded-2xl shadow-lg">
-            <p class="mb-4">"Melhor corte de torcida que já recebi! Ambiente incrível."</p>
-            <p class="font-bold">- Pedro, fã do Grêmio</p>
-          </div>
-          <div class="swiper-slide p-6 bg-accent dark:bg-secondary rounded-2xl shadow-lg">
-            <p class="mb-4">"Serviço top e tema do Inter sensacional!"</p>
-            <p class="font-bold">- Ana, colorada</p>
-          </div>
+        <div class="hidden md:block absolute bottom-1/4 right-10 floating" style="animation-delay: 1s;">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#FFD700" stroke-width="2"/>
+            </svg>
         </div>
-        <div class="swiper-pagination mt-4"></div>
-      </div>
-    </div>
-  </section>  <!-- Contact & Map -->  <section id="contact" class="py-16">
-    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- Form -->
-      <div data-aos="fade-right">
-        <h2 class="text-3xl font-semibold mb-4">Reserve sua vez</h2>
-        <form class="space-y-4 bg-accent dark:bg-secondary p-6 rounded-2xl shadow-lg">
-          <div class="flex flex-col md:flex-row gap-4">
-            <input type="text" placeholder="Nome" required class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-            <input type="email" placeholder="Email" required class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-          </div>
-          <div class="flex flex-col md:flex-row gap-4">
-            <input type="tel" placeholder="Telefone" required class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-            <select required class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-              <option value="">Escolha um serviço...</option>
-              <option value="corte">Corte de Cabelo</option>
-              <option value="afeitado">Afeitado Tradicional</option>
-              <option value="barba">Design de Barba</option>
-            </select>
-          </div>
-          <div class="flex flex-col md:flex-row gap-4">
-            <input type="date" required class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-            <input type="time" required class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-          </div>
-          <button type="submit" class="w-full bg-primary text-secondary font-semibold py-3 rounded-lg hover:bg-opacity-90 transition">Enviar</button>
-        </form>
-      </div>
-      <!-- Info -->
-      <div data-aos="fade-left">
-        <h2 class="text-3xl font-semibold mb-4">Onde nos encontrar</h2>
-        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Rua Brudenburgo, 116, Santa Terezinha, Vacaria - RS</p>
-        <p class="mb-2"><i class="fas fa-phone mr-2"></i>(54) 99245-0467</p> <!-- ([cnpj.info](https://cnpj.info/Igor-de-Azevedo-Santos-Barbearia-On-Fire?utm_source=chatgpt.com)) -->
-        <p class="mb-4"><i class="fas fa-envelope mr-2"></i>igormeiazevedo@gmail.com</p>
-        <div class="w-full h-64 rounded-2xl overflow-hidden shadow-lg mb-4">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.123456789012!2d-50.996789012345!3d-28.507890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x0000000000000000!2sOn%20Fire%20Barbearia!5e0!3m2!1spt-BR!2sbr!4v0000000000000" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading text-4xl md:text-5xl font-bold mb-4">NUESTROS <span class="fire-text">SERVICIOS</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Ofrecemos servicios de barbería premium para que te veas y sientas mejor que nunca.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card p-8">
+                    <div class="mb-6 text-orange-500 text-5xl">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3 class="heading text-2xl font-bold mb-4">CORTES DE CABELLO</h3>
+                    <p class="text-gray-400 mb-4">Cortes personalizados para todos los estilos, desde clásicos hasta modernos, adaptados a tu personalidad.</p>
+                    <a href="https://wa.me/" target="_blank" class="inline-block mt-4 text-white border-b-2 border-orange-500 hover:text-orange-500 transition-colors">Reservar ahora →</a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="glass-card p-8">
+                    <div class="mb-6 text-orange-500 text-5xl">
+                        <i class="fas fa-razor"></i>
+                    </div>
+                    <h3 class="heading text-2xl font-bold mb-4">ESTÉTICA DE BARBA</h3>
+                    <p class="text-gray-400 mb-4">Diseño, recorte y afeitado profesional de barba para realzar tus rasgos y mantener un aspecto impecable.</p>
+                    <a href="https://wa.me/" target="_blank" class="inline-block mt-4 text-white border-b-2 border-orange-500 hover:text-orange-500 transition-colors">Reservar ahora →</a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="glass-card p-8">
+                    <div class="mb-6 text-orange-500 text-5xl">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="heading text-2xl font-bold mb-4">TINTES DE TODO TIPO</h3>
+                    <p class="text-gray-400 mb-4">Coloración profesional para cabello o barba con productos de alta calidad y asesoramiento personalizado.</p>
+                    <a href="https://wa.me/" target="_blank" class="inline-block mt-4 text-white border-b-2 border-orange-500 hover:text-orange-500 transition-colors">Reservar ahora →</a>
+                </div>
+            </div>
         </div>
-        <p><a href="https://linktr.ee/barbeariaonfire" class="text-primary hover:underline"><i class="fab fa-instagram mr-2"></i>@barbeariaonfire</a> • <a href="https://linktr.ee/barbeariaonfire" class="text-primary hover:underline"><i class="fas fa-link mr-2"></i>linktr.ee</a></p>
-      </div>
-    </div>
-  </section>  <!-- Footer -->  <footer class="bg-secondary dark:bg-black text-accent py-8">
-    <div class="container mx-auto px-4 text-center space-y-2">
-      <a href="#home" class="text-xl font-semibold text-primary">On Fire</a>
-      <p>© 2025 On Fire Barbearia</p>
-      <p>Rua Brudenburgo, 116, Santa Terezinha, Vacaria - RS</p>
-      <div class="flex justify-center space-x-6 mt-2">
-        <a href="#"><i class="fab fa-facebook-f fa-lg hover:text-primary"></i></a>
-        <a href="#"><i class="fab fa-instagram fa-lg hover:text-primary"></i></a>
-        <a href="#"><i class="fab fa-whatsapp fa-lg hover:text-primary"></i></a>
-      </div>
-      <p class="text-sm">Projetado por On Fire Barbearia • Todos os direitos reservados</p>
-    </div>
-  </footer>  <!-- JSON-LD -->  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BarberShop",
-    "name": "On Fire Barbearia",
-    "description": "Barbearia em Vacaria, RS. Cortes temáticos de futebol.",
-    "address": {"@type": "PostalAddress","streetAddress": "Rua Brudenburgo, 116","addressLocality": "Vacaria","addressRegion": "RS","addressCountry": "BR","postalCode": "95201-028"},
-    "telephone": "+55 54 99245-0467",
-    "email": "igormeiazevedo@gmail.com",
-    "url": "https://linktr.ee/barbeariaonfire",
-    "openingHoursSpecification": [
-      {"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"09:00","closes":"20:00","validFrom":"2024-01-01"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"09:00","closes":"20:00"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"09:00","closes":"20:00"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"09:00","closes":"20:00"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"09:00","closes":"20:00"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"18:00"}
-    ]
-  }
-  </script>  <!-- Scripts -->  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>  <script>
-    AOS.init({ duration: 800, once: true });
-    new Swiper('.swiper-container', { loop: true, pagination: { el: '.swiper-pagination', clickable: true } });
-  </script></body>
-</html>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galeria" class="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading text-4xl md:text-5xl font-bold mb-4">NUESTRA <span class="fire-text">GALERÍA</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Explora nuestros mejores trabajos y descubre el estilo que estás buscando.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Gallery images using SVG placeholders -->
+                <div class="relative overflow-hidden rounded-lg gallery-img aspect-square bg-gray-800">
+                    <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FF4D00;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:0.7" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="400" height="400" fill="url(#grad1)" />
+                        <circle cx="200" cy="150" r="80" fill="#333" />
+                        <rect x="120" y="250" width="160" height="100" rx="10" fill="#444" />
+                        <text x="200" y="380" text-anchor="middle" fill="#FF4D00" font-size="20">Corte Moderno</text>
+                    </svg>
+                </div>
+                <div class="relative overflow-hidden rounded-lg gallery-img aspect-square bg-gray-800">
+                    <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:0.7" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="400" height="400" fill="url(#grad2)" />
+                        <circle cx="200" cy="150" r="80" fill="#333" />
+                        <rect x="150" y="230" width="100" height="120" rx="10" fill="#444" />
+                        <text x="200" y="380" text-anchor="middle" fill="#FFD700" font-size="20">Barba Perfecta</text>
+                    </svg>
+                </div>
+                <div class="relative overflow-hidden rounded-lg gallery-img aspect-square bg-gray-800">
+                    <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FF4D00;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:0.7" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="400" height="400" fill="url(#grad3)" />
+                        <circle cx="200" cy="150" r="80" fill="#333" />
+                        <path d="M120,250 Q200,200 280,250 Q200,300 120,250" fill="#444" />
+                        <text x="200" y="380" text-anchor="middle" fill="#FF4D00" font-size="20">Estilo Fade</text>
+                    </svg>
+                </div>
+                <div class="relative overflow-hidden rounded-lg gallery-img aspect-square bg-gray-800">
+                    <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:0.7" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="400" height="400" fill="url(#grad4)" />
+                        <circle cx="200" cy="150" r="80" fill="#333" />
+                        <rect x="120" y="250" width="160" height="20" rx="10" fill="#444" />
+                        <rect x="140" y="280" width="120" height="20" rx="10" fill="#444" />
+                        <rect x="160" y="310" width="80" height="20" rx="10" fill="#444" />
+                        <text x="200" y="380" text-anchor="middle" fill="#FFD700" font-size="20">Afeitado Clásico</text>
+                    </svg>
+                </div>
+                <div class="relative overflow-hidden rounded-lg gallery-img aspect-square bg-gray-800">
+                    <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FF4D00;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:0.7" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="400" height="400" fill="url(#grad5)" />
+                        <circle cx="200" cy="150" r="80" fill="#333" />
+                        <polygon points="150,250 250,250 200,350" fill="#444" />
+                        <text x="200" y="380" text-anchor="middle" fill="#FF4D00" font-size="20">Corte Texturizado</text>
+                    </svg>
+                </div>
+                <div class="relative overflow-hidden rounded-lg gallery-img aspect-square bg-gray-800">
+                    <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:0.7" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="400" height="400" fill="url(#grad6)" />
+                        <circle cx="200" cy="150" r="80" fill="#333" />
+                        <circle cx="160" cy="270" r="40" fill="#444" />
+                        <circle cx="240" cy="270" r="40" fill="#444" />
+                        <text x="200" y="380" text-anchor="middle" fill="#FFD700" font-size="20">Diseño Personalizado</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://wa.me/" target="_blank" class="btn-primary inline-block text-white px-8 py-4 rounded-full text-lg font-bold">
+                    RESERVA TU ESTILO
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="equipo" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading text-4xl md:text-5xl font-bold mb-4">NUESTRO <span class="fire-text">EQUIPO</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Conoce a los maestros detrás de cada corte perfecto, expertos en su oficio y apasionados por su arte.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <!-- Team Member 1 -->
+                <div class="glass-card p-6 text-center">
+                    <div class="mb-6 mx-auto w-48 h-48 rounded-full overflow-hidden bg-gray-800">
+                        <svg class="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="teamGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#FF4D00;stop-opacity:0.2" />
+                                    <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:0.8" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="100" cy="100" r="100" fill="url(#teamGrad1)" />
+                            <circle cx="100" cy="80" r="40" fill="#333" />
+                            <path d="M50,140 Q100,180 150,140" fill="#444" />
+                        </svg>
+                    </div>
+                    <h3 class="heading text-2xl font-bold mb-2">MARCEL APOLLO</h3>
+                    <p class="text-orange-500 font-medium mb-4">Maestro Barbero</p>
+                    <p class="text-gray-400 mb-6">Especialista en cortes modernos y diseños personalizados que resaltan tu personalidad.</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://www.instagram.com/barbeariaonfire/" target="_blank" class="text-gray-400 hover:text-orange-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/barbeariaonfire/" target="_blank" class="text-gray-400 hover:text-orange-500">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="glass-card p-6 text-center">
+                    <div class="mb-6 mx-auto w-48 h-48 rounded-full overflow-hidden bg-gray-800">
+                        <svg class="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="teamGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.2" />
+                                    <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:0.8" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="100" cy="100" r="100" fill="url(#teamGrad2)" />
+                            <circle cx="100" cy="80" r="40" fill="#333" />
+                            <path d="M50,140 Q100,180 150,140" fill="#444" />
+                        </svg>
+                    </div>
+                    <h3 class="heading text-2xl font-bold mb-2">IGOR AZEVEDO</h3>
+                    <p class="text-orange-500 font-medium mb-4">Especialista en Barbas y Tintes</p>
+                    <p class="text-gray-400 mb-6">Experto en estética de barba y coloración, creando looks únicos y personalizados.</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://www.instagram.com/barbeariaonfire/" target="_blank" class="text-gray-400 hover:text-orange-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/barbeariaonfire/" target="_blank" class="text-gray-400 hover:text-orange-500">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonios" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading text-4xl md:text-5xl font-bold mb-4">LO QUE DICEN <span class="fire-text">NUESTROS CLIENTES</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">La satisfacción de nuestros clientes es nuestro mayor orgullo. Esto es lo que dicen sobre nosotros.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="glass-card p-8 testimonial-card">
+                    <div class="flex items-center mb-6">
+                        <div class="text-orange-500 text-2xl mr-2">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">La mejor barbería de Vacaria, sin duda. Marcel entendió exactamente lo que quería y el resultado superó mis expectativas. Ambiente increíble y atención de primera.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center mr-4">
+                            <span class="text-orange-500 font-bold">JR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">João Rodrigues</h4>
+                            <p class="text-sm text-gray-500">Cliente desde 2022</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="glass-card p-8 testimonial-card">
+                    <div class="flex items-center mb-6">
+                        <div class="text-orange-500 text-2xl mr-2">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">Vengo desde hace años y nunca me han decepcionado. El servicio es impecable, el ambiente es genial y los resultados siempre son perfectos. ¡No cambiaría de barbería por nada!</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center mr-4">
+                            <span class="text-orange-500 font-bold">DL</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Daniel Lima</h4>
+                            <p class="text-sm text-gray-500">Cliente desde 2020</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="glass-card p-8 testimonial-card">
+                    <div class="flex items-center mb-6">
+                        <div class="text-orange-500 text-2xl mr-2">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">Primera vez que visito Barbearia On Fire y quedé impresionado. Igor hizo magia con mi barba y el corte quedó exactamente como lo quería. Definitivamente volveré pronto.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center mr-4">
+                            <span class="text-orange-500 font-bold">MG</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Mateus Gonçalves</h4>
+                            <p class="text-sm text-gray-500">Cliente nuevo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading text-4xl md:text-5xl font-bold mb-4">RESERVA TU <span class="fire-text">EXPERIENCIA</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Estamos listos para transformar tu estilo. Reserva tu cita ahora y vive la experiencia On Fire.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="glass-card p-8">
+                    <h3 class="heading text-2xl font-bold mb-6">RESERVA TU CITA</h3>
+                    <p class="text-gray-400 mb-6">Para reservar tu cita, contáctanos por WhatsApp o llámanos directamente. También puedes visitarnos en nuestra ubicación.</p>
+                    <div class="flex flex-col space-y-4">
+                        <a href="https://wa.me/" target="_blank" class="btn-primary text-white px-6 py-4 rounded-full font-bold text-lg flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-xl"></i> RESERVAR POR WHATSAPP
+                        </a>
+                        <a href="https://www.instagram.com/barbeariaonfire/" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 rounded-full font-bold text-lg flex items-center justify-center">
+                            <i class="fab fa-instagram mr-2 text-xl"></i> SÍGUENOS EN INSTAGRAM
+                        </a>
+                        <a href="https://www.facebook.com/barbeariaonfire/" target="_blank" class="bg-blue-600 text-white px-6 py-4 rounded-full font-bold text-lg flex items-center justify-center">
+                            <i class="fab fa-facebook-f mr-2 text-xl"></i> SÍGUENOS EN FACEBOOK
+                        </a>
+                        <a href="https://linktr.ee/barbeariaonfire" target="_blank" class="bg-green-600 text-white px-6 py-4 rounded-full font-bold text-lg flex items-center justify-center">
+                            <i class="fas fa-link mr-2 text-xl"></i> VISITA NUESTRO LINKTREE
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <div class="glass-card p-8 mb-8">
+                        <h3 class="heading text-2xl font-bold mb-6">INFORMACIÓN DE CONTACTO</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="text-orange-500 text-xl mt-1 mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Dirección</h4>
+                                    <p class="text-gray-400">Rua Brudenburgo 116<br>Santa Terezinha, Vacaria RS<br>Brasil 95201028</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-orange-500 text-xl mt-1 mr-4">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">WhatsApp</h4>
+                                    <a href="https://wa.me/" target="_blank" class="text-gray-400 hover:text-orange-500">Envíanos un mensaje</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-orange-500 text-xl mt-1 mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <a href="mailto:igormeiazevedo@gmail.com" class="text-gray-400 hover:text-orange-500">igormeiazevedo@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-orange-500 text-xl mt-1 mr-4">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Horario</h4>
+                                    <p class="text-gray-400">Lunes a viernes: 09:00 - 11:30 y 14:00 - 19:00<br>Sábados: 09:00 - 11:30 y 14:00 - 17:00<br>Domingo: Cerrado</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Síguenos</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.instagram.com/barbeariaonfire/" target="_blank" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition-all">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.facebook.com/barbeariaonfire/" target="_blank" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition-all">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://linktr.ee/barbeariaonfire" target="_blank" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition-all">
+                                    <i class="fas fa-link"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Google Map -->
+                    <div class="glass-card p-4 h-64 rounded-lg overflow-hidden">
+                        <iframe src="https://maps.google.com/maps?q=Rua%20Brudenburgo%20116,%20Santa%20Terezinha,%20Vacaria%20RS,%20Brasil&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div>
+                    <a href="#hero" class="flex items-center mb-6">
+                        <span class="text-3xl mr-2">🔥</span>
+                        <span class="heading text-3xl font-bold text-white">BARBEARIA <span class="fire-text">ON FIRE</span></span>
+                    </a>
+                    <p class="text-gray-400 mb-6">Donde el estilo se encuentra con la excelencia. Transformamos tu imagen con pasión y profesionalismo.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/barbeariaonfire/" target="_blank" class="text-gray-400 hover:text-orange-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/barbeariaonfire/" target="_blank" class="text-gray-400 hover:text-orange-500">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://linktr.ee/barbeariaonfire" target="_blank" class="text-gray-400 hover:text-orange-500">
+                            <i class="fas fa-link text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="heading text-xl font-bold mb-6 text-white">Enlaces rápidos</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#servicios" class="text-gray-400 hover:text-orange-500">Servicios</a></li>
+                        <li><a href="#galeria" class="text-gray-400 hover:text-orange-500">Galería</a></li>
+                        <li><a href="#equipo" class="text-gray-400 hover:text-orange-500">Equipo</a></li>
+                        <li><a href="#testimonios" class="text-gray-400 hover:text-orange-500">Testimonios</a></li>
+                        <li><a href="#contacto" class="text-gray-400 hover:text-orange-500">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="heading text-xl font-bold mb-6 text-white">Horario</h4>
+                    <ul class="space-y-3">
+                        <li class="text-gray-400">Lunes a viernes: 09:00 - 11:30 y 14:00 - 19:00</li>
+                        <li class="text-gray-400">Sábados: 09:00 - 11:30 y 14:00 - 17:00</li>
+                        <li class="text-gray-400">Domingo: Cerrado</li>
+                    </ul>
+                    <div class="mt-6">
+                        <a href="https://maps.app.goo.gl/cXPAqrKnY34PCZx46" target="_blank" class="text-orange-500 hover:text-orange-400 flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i> Ver en Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Barbearia On Fire. Todos los derechos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="mailto:igormeiazevedo@gmail.com" class="text-gray-500 hover:text-orange-500 text-sm">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Custom cursor
+        const customCursor = document.querySelector('.custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth >= 768) {
+                customCursor.style.left = e.clientX + 'px';
+                customCursor.style.top = e.clientY + 'px';
+            }
+        });
+        
+        // Hover effect for buttons and links
+        const interactiveElements = document.querySelectorAll('a, button');
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                if (window.innerWidth >= 768) {
+                    customCursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    customCursor.style.backgroundColor = 'rgba(255, 77, 0, 0.3)';
+                    customCursor.style.mixBlendMode = 'difference';
+                }
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                if (window.innerWidth >= 768) {
+                    customCursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    customCursor.style.backgroundColor = 'rgba(255, 77, 0, 0.5)';
+                    customCursor.style.mixBlendMode = 'normal';
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Adjust for fixed header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+  </html>
